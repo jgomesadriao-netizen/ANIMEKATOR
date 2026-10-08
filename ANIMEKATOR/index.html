@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AnimeKator</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <!-- =========================
+             TELA INICIAL
+        ========================== -->
+
+        <section id="start-screen" class="screen active">
+
+            <h1>AnimeKator</h1>
+
+            <h2>Escolha um desses personagens de anime aqui de baixo:</h2>
+
+            <div class="characters-grid">
+
+                <!-- 1 -->
+                <div class="character">
+                    <img src="img/naruto.jpg" alt="Naruto">
+                    <p>Naruto</p>
+                </div>
+
+                <!-- 2 -->
+                <div class="character">
+                    <img src="img/luffy.jpg" alt="Luffy">
+                    <p>Luffy</p>
+                </div>
+
+                <!-- 3 -->
+                <div class="character">
+                    <img src="img/goku.jpg" alt="Goku">
+                    <p>Goku</p>
+                </div>
+
+                <!-- 4 -->
+                <div class="character">
+                    <img src="img/gojo.jpg" alt="Gojo">
+                    <p>Gojo</p>
+                </div>
+
+                <!-- 5 -->
+                <div class="character">
+                    <img src="img/tanjiro.jpg" alt="Tanjiro">
+                    <p>Tanjiro</p>
+                </div>
+
+                <!-- 6 -->
+                <div class="character">
+                    <img src="img/zoro.jpg" alt="Zoro">
+                    <p>Zoro</p>
+                </div>
+
+                <!-- 7 -->
+                <div class="character">
+                    <img src="img/ichiro.jpg" alt="Ichigo">
+                    <p>Ichigo</p>
+                </div>
+
+                <!-- 8 -->
+                <div class="character">
+                    <img src="img/eren.jpg" alt="Eren">
+                    <p>Eren</p>
+                </div>
+
+                <!-- 9 -->
+                <div class="character">
+                    <img src="img/killua.jpg" alt="Killua">
+                    <p>Killua</p>
+                </div>
+
+                <!-- 10 -->
+                <div class="character">
+                    <img src="img/Deku.jpg" alt="Deku">
+                    <p>Deku</p>
+                </div>
+
+                <!-- 11 -->
+                <div class="character">
+                    <img src="img/saitama.jpg" alt="Saitama">
+                    <p>Saitama</p>
+                </div>
+
+                <!-- 12 -->
+                <div class="character">
+                    <img src="img/nezuko.jpg" alt="Nezuko">
+                    <p>Nezuko</p>
+                </div>
+
+                <!-- 13 -->
+                <div class="character">
+                    <img src="img/sukuna.jpg" alt="Sukuna">
+                    <p>Sukuna</p>
+                </div>
+
+                <!-- 14 -->
+                <div class="character">
+                    <img src="img/gon.jpg" alt="Gon">
+                    <p>Gon</p>
+                </div>
+
+                <!-- 15 - CORINGA -->
+                <div class="character">
+                    <img src="img/vegeta.jpg" alt="Vegeta">
+                    <p>Vegeta</p>
+                </div>
+
+            </div>
+
+            <p>
+                Não conte para ninguém qual personagem você escolheu.
+                Vou tentar descobrir!
+            </p>
+
+            <button id="start-button" class="btn">
+                Começar
+            </button>
+
+        </section>
+
+
+        <!-- =========================
+             TELA DO JOGO
+        ========================== -->
+
+        <section id="game-screen" class="screen">
+
+            <h2 id="question-text" class="question">
+                O personagem que você escolheu está neste cartão?
+            </h2>
+
+            <div id="card-display" class="card">
+                <!-- O JavaScript coloca os personagens aqui -->
+            </div>
+
+            <div class="button-group">
+
+                <button
+                    data-answer="yes"
+                    class="btn yes">
+                    Sim
+                </button>
+
+                <button
+                    data-answer="no"
+                    class="btn no">
+                    Não
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             TELA DE RESULTADO
+        ========================== -->
+
+        <section id="result-screen" class="screen">
+
+            <h2 class="result-intro">
+                Acho que descobri!
+            </h2>
+
+            <div id="result-number" class="result-number-display">
+            </div>
+
+            <div id="result-image" class="result-image-display">
+            </div>
+
+            <div id="explanation" class="explanation-box">
+
+                <h3 class="explanation-title">
+                    Como eu adivinhei?
+                </h3>
+
+                <p id="explanation-text" class="explanation-content">
+                </p>
+
+            </div>
+
+            <button id="play-again-button" class="btn">
+                Jogar Novamente
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <!-- JavaScript do jogo -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
