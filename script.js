@@ -362,16 +362,27 @@ function showResult() {
 
     // Caso aconteça algum erro
 
-    if (!character) {
+   if (!character) {
+    resultNumber.textContent = "OPA! 🤨";
 
-        resultNumber.textContent = "Ops!";
+    resultImage.innerHTML = `
+        <img 
+            src="img/burl.gif" 
+            alt="Você tentou me burlar"
+            style="
+                width: 100%;
+                max-width: 280px;
+                border-radius: 20px;
+            "
+        >
+    `;
 
-        resultImage.innerHTML = "";
+    explanationText.textContent =
+        "KKKKKK tentou me burlar, né? 😂 Você respondeu tudo errado e achou que eu não ia perceber. Escolhe um personagem de verdade e tenta de novo!";
 
-        explanationText.textContent =
-            "Não consegui descobrir o personagem.";
-
-        return;
+    return;
+}
+}
     }
 
 
