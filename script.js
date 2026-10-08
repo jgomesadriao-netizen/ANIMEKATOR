@@ -57,7 +57,7 @@ const characters = [
     {
         id: 10,
         name: "Deku",
-        image: "img/Deku.jpg"
+        image: "img/deku.jpg"
     },
     {
         id: 11,
