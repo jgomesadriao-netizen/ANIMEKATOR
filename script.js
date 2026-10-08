@@ -361,26 +361,21 @@ function showResult() {
 
 
     // Caso aconteça algum erro
+if (!character) {
+    resultNumberDisplay.textContent = "OPA! 🤨";
 
-   if (!character) {
-    resultNumber.textContent = "OPA! 🤨";
-
-    resultImage.innerHTML = `
-        <img 
-            src="img/burl.gif" 
-            alt="Você tentou me burlar"
-            style="
-                width: 100%;
-                max-width: 280px;
-                border-radius: 20px;
-            "
-        >
+    resultImageDisplay.innerHTML = `
+        <div style="font-size: 90px; margin: 20px;">
+            🕵️‍♂️
+        </div>
     `;
 
     explanationText.textContent =
-        "KKKKKK tentou me burlar, né? 😂 Você respondeu tudo errado e achou que eu não ia perceber. Escolhe um personagem de verdade e tenta de novo!";
+        "KKKKKK tentou me burlar, né, meu parceiro? 😂 Até eu fiquei perdido nessa! Escolhe um personagem de verdade e bora tentar de novo.";
 
+    showScreen('result');
     return;
+}
 }
 }
     }
