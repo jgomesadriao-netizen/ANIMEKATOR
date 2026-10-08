@@ -415,11 +415,12 @@ if (!character) {
 // BOTÃO COMEÇAR
 // ==========================================
 
-startButton.addEventListener("click", function() {
-
-    startGame();
-
-});
+if (startButton) {
+    startButton.addEventListener('click', function() {
+        showScreen('game');
+        startGame();
+    });
+}
 
 
 // ==========================================
