@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     // PERSONAGENS
     const characters = [
-        { id: 1, name: "Naruto", image: "img/naruto.jpg" },
-        { id: 2, name: "Luffy", image: "img/luffy.jpg" },
+        { id: 1, name: "Naruto", image: "img/naruto.jpg.jpeg" },
+        { id: 2, name: "Luffy", image: "img/luffy.jpg.jpeg" },
         { id: 3, name: "Goku", image: "img/goku.jpg" },
         { id: 4, name: "Gojo", image: "img/gojo.jpg" },
         { id: 5, name: "Tanjiro", image: "img/tanjiro.jpg" },
