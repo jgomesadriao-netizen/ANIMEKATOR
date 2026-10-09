@@ -132,37 +132,26 @@ document.addEventListener("DOMContentLoaded", function () {
             return item.id === guessedNumber;
         });
 
-    if (!character) {
+ if (!character) {
     resultNumber.textContent = "OPA! 🤨";
 
-  const gifsEngracados = [
-    "img/saitama-chocado.gif",
-    "img/saitama-sem-reacao.gif",
-    "img/saitama-confuso.gif"
-];
+    resultImage.innerHTML = `
+        <div style="
+            font-size: 85px;
+            margin: 20px;
+            text-align: center;
+        ">
+            🕵️‍♂️
+        </div>
+    `;
 
-const gifAleatorio =
-    gifsEngracados[
-        Math.floor(Math.random() * gifsEngracados.length)
-    ];
-
-resultImage.innerHTML = `
-    <img
-        src="${gifAleatorio}"
-        alt="Saitama reagindo à tentativa de burlar o jogo"
-        style="
-            width: 100%;
-            max-width: 280px;
-            border-radius: 20px;
-            margin: 20px auto;
-            display: block; " >
-`;
     explanationText.textContent =
         "KKKKKK tentou me passar a perna, né, meu consagrado? 😂 " +
         "Você respondeu tudo no modo aleatório e quer que eu leia sua mente? " +
         "Aí você me quebra! Escolhe um personagem e tenta de novo, Sherlock de Taubaté! 🕵️";
 
     return;
+}
 }
         }
 
