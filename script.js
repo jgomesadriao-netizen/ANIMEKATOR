@@ -155,9 +155,7 @@ resultImage.innerHTML = `
             max-width: 280px;
             border-radius: 20px;
             margin: 20px auto;
-            display: block;
-        "
-    >
+            display: block; " >
 `;
     explanationText.textContent =
         "KKKKKK tentou me passar a perna, né, meu consagrado? 😂 " +
