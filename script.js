@@ -18,8 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
         { id: 15, name: "Vegeta", image: "img/vegeta.jpg.jpeg" }
     ];
 
-    // QUATRO CARTAS DO ANIMEKATOR
-    // Vegeta aparece nas quatro posições combinadas.
+    // QUATRO CARTAS MATEMÁTICAS
     const cards = [
         { value: 1, characters: [15, 3, 5, 7, 9, 11, 13, 1] },
         { value: 2, characters: [2, 15, 6, 7, 10, 11, 14, 3] },
@@ -99,6 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const img = document.createElement("img");
             img.src = character.image;
             img.alt = character.name;
+
             img.onerror = function () {
                 this.alt = "Imagem indisponível";
             };
@@ -116,6 +116,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // REGISTRAR RESPOSTA
     function handleAnswer(answer) {
+        if (currentCard >= cards.length) return;
+
         if (answer === "yes") {
             guessedNumber += cards[currentCard].value;
         }
@@ -132,29 +134,29 @@ document.addEventListener("DOMContentLoaded", function () {
             return item.id === guessedNumber;
         });
 
- if (!character) {
-    resultNumber.textContent = "OPA! 🤨";
+        // RESPOSTA INVÁLIDA OU TENTATIVA DE ENGANAR O JOGO
+        if (!character) {
+            resultNumber.textContent = "OPA! 🤨";
 
-    resultImage.innerHTML = `
-        <div style="
-            font-size: 85px;
-            margin: 20px;
-            text-align: center;
-        ">
-            🕵️‍♂️
-        </div>
-    `;
+            resultImage.innerHTML = `
+                <div style="
+                    font-size: 85px;
+                    margin: 20px;
+                    text-align: center;
+                ">
+                    🕵️‍♂️
+                </div>
+            `;
 
-    explanationText.textContent =
-        "KKKKKK tentou me passar a perna, né, meu consagrado? 😂 " +
-        "Você respondeu tudo no modo aleatório e quer que eu leia sua mente? " +
-        "Aí você me quebra! Escolhe um personagem e tenta de novo, Sherlock de Taubaté! 🕵️";
+            explanationText.textContent =
+                "KKKKKK tentou me passar a perna, né, meu consagrado? 😂 " +
+                "Você respondeu tudo no modo aleatório e quer que eu leia sua mente? " +
+                "Aí você me quebra! Escolhe um personagem e tenta de novo, Sherlock de Taubaté! 🕵️";
 
-    return;
-}
-}
+            return;
         }
 
+        // MOSTRAR O PERSONAGEM DESCOBERTO
         resultNumber.textContent =
             `Seu personagem é o número ${character.id}!`;
 
@@ -166,6 +168,10 @@ document.addEventListener("DOMContentLoaded", function () {
         img.style.width = "100%";
         img.style.maxWidth = "280px";
         img.style.borderRadius = "20px";
+
+        img.onerror = function () {
+            this.alt = "Imagem indisponível";
+        };
 
         resultImage.appendChild(img);
 
