@@ -132,21 +132,33 @@ document.addEventListener("DOMContentLoaded", function () {
             return item.id === guessedNumber;
         });
 
-        if (!character) {
-            resultNumber.textContent = "OPA! 🤨";
+    if (!character) {
+    resultNumber.textContent = "OPA! 🤨";
 
-            resultImage.innerHTML = `
-                <div style="font-size: 85px; margin: 20px;">
-                    🕵️‍♂️
-                </div>
-            `;
+    const gifsEngracados = [
+        "https://media.tenor.com/2roX3uxz_68AAAAC/anime-bruh.gif",
+        "https://media.tenor.com/8K7h0pL8p9AAAAAC/anime-shocked.gif",
+        "https://media.tenor.com/7iT5jJY7j1AAAAAC/anime-funny.gif"
+    ];
 
-            explanationText.textContent =
-                "KKKKKK tentou me passar a perna, né, meu consagrado? 😂 " +
-                "Você respondeu tudo no modo aleatório e quer que eu leia sua mente? " +
-                "Aí você me quebra! Escolhe um personagem e tenta de novo, Sherlock de Taubaté! 🕵️";
+    const gifAleatorio =
+        gifsEngracados[Math.floor(Math.random() * gifsEngracados.length)];
 
-            return;
+    resultImage.innerHTML = `
+        <img
+            src="${gifAleatorio}"
+            alt="Reação engraçada de anime"
+            style="width: 100%; max-width: 280px; border-radius: 20px; margin: 20px auto; display: block;"
+        >
+    `;
+
+    explanationText.textContent =
+        "KKKKKK tentou me passar a perna, né, meu consagrado? 😂 " +
+        "Você respondeu tudo no modo aleatório e quer que eu leia sua mente? " +
+        "Aí você me quebra! Escolhe um personagem e tenta de novo, Sherlock de Taubaté! 🕵️";
+
+    return;
+}
         }
 
         resultNumber.textContent =
