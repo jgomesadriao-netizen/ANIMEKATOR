@@ -1,456 +1,190 @@
-// ==========================================
-// ANIMEKATOR
-// JOGO DE ADIVINHAÇÃO DE PERSONAGENS
-// ==========================================
+document.addEventListener("DOMContentLoaded", function () {
+    // PERSONAGENS
+    const characters = [
+        { id: 1, name: "Naruto", image: "img/naruto.jpg" },
+        { id: 2, name: "Luffy", image: "img/luffy.jpg" },
+        { id: 3, name: "Goku", image: "img/goku.jpg" },
+        { id: 4, name: "Gojo", image: "img/gojo.jpg" },
+        { id: 5, name: "Tanjiro", image: "img/tanjiro.jpg" },
+        { id: 6, name: "Zoro", image: "img/zoro.jpg" },
+        { id: 7, name: "Ichigo", image: "img/ichiro.jpg" },
+        { id: 8, name: "Eren", image: "img/eren.jpg" },
+        { id: 9, name: "Killua", image: "img/killua.jpg" },
+        { id: 10, name: "Deku", image: "img/deku.jpg" },
+        { id: 11, name: "Saitama", image: "img/saitama.jpg" },
+        { id: 12, name: "Nezuko", image: "img/nezuko.jpg" },
+        { id: 13, name: "Sukuna", image: "img/sukuna.jpg" },
+        { id: 14, name: "Gon", image: "img/gon.jpg" },
+        { id: 15, name: "Vegeta", image: "img/vegeta.jpg" }
+    ];
 
+    // QUATRO CARTAS DO ANIMEKATOR
+    // Vegeta aparece nas quatro posições combinadas.
+    const cards = [
+        { value: 1, characters: [15, 3, 5, 7, 9, 11, 13, 1] },
+        { value: 2, characters: [2, 15, 6, 7, 10, 11, 14, 3] },
+        { value: 4, characters: [4, 5, 6, 7, 12, 13, 14, 15] },
+        { value: 8, characters: [8, 9, 10, 15, 11, 12, 13, 14] }
+    ];
 
-// ==========================================
-// PERSONAGENS
-// ==========================================
+    // ELEMENTOS DA PÁGINA
+    const startScreen = document.getElementById("start-screen");
+    const gameScreen = document.getElementById("game-screen");
+    const resultScreen = document.getElementById("result-screen");
 
-const characters = [
-    {
-        id: 1,
-        name: "Naruto",
-        image: "img/naruto.jpg"
-    },
-    {
-        id: 2,
-        name: "Luffy",
-        image: "img/luffy.jpg"
-    },
-    {
-        id: 3,
-        name: "Goku",
-        image: "img/goku.jpg"
-    },
-    {
-        id: 4,
-        name: "Gojo",
-        image: "img/gojo.jpg"
-    },
-    {
-        id: 5,
-        name: "Tanjiro",
-        image: "img/tanjiro.jpg"
-    },
-    {
-        id: 6,
-        name: "Zoro",
-        image: "img/zoro.jpg"
-    },
-    {
-        id: 7,
-        name: "Ichigo",
-        image: "img/ichiro.jpg"
-    },
-    {
-        id: 8,
-        name: "Eren",
-        image: "img/eren.jpg"
-    },
-    {
-        id: 9,
-        name: "Killua",
-        image: "img/killua.jpg"
-    },
-    {
-        id: 10,
-        name: "Deku",
-        image: "img/deku.jpg"
-    },
-    {
-        id: 11,
-        name: "Saitama",
-        image: "img/saitama.jpg"
-    },
-    {
-        id: 12,
-        name: "Nezuko",
-        image: "img/nezuko.jpg"
-    },
-    {
-        id: 13,
-        name: "Sukuna",
-        image: "img/sukuna.jpg"
-    },
-    {
-        id: 14,
-        name: "Gon",
-        image: "img/gon.jpg"
-    },
-    {
-        // PERSONAGEM Nº 15
-        // CARTA CORINGA
-        id: 15,
-        name: "Vegeta",
-        image: "img/vegeta.jpg"
-    }
-];
+    const startButton = document.getElementById("start-button");
+    const cardDisplay = document.getElementById("card-display");
+    const questionText = document.getElementById("question-text");
+    const answerButtons = document.querySelectorAll("[data-answer]");
 
+    const resultNumber = document.getElementById("result-number");
+    const resultImage = document.getElementById("result-image");
+    const explanationText = document.getElementById("explanation-text");
+    const playAgainButton = document.getElementById("play-again-button");
 
-// ==========================================
-// CARTAS
-// ==========================================
+    // ESTADO DO JOGO
+    let currentCard = 0;
+    let guessedNumber = 0;
 
-// Cada carta representa um valor:
-//
-// Carta 1 = 1
-// Carta 2 = 2
-// Carta 3 = 4
-// Carta 4 = 8
-//
-// A soma das cartas em que o personagem
-// aparece revela o número dele.
-//
-// Vegeta = 15
-// 1 + 2 + 4 + 8 = 15
+    // TROCAR DE TELA
+    function showScreen(screen) {
+        startScreen.classList.remove("active");
+        gameScreen.classList.remove("active");
+        resultScreen.classList.remove("active");
 
-
-const cards = [
-
-    {
-        value: 1,
-
-        // VEGETA está na posição 1
-        characters: [
-            15,
-            3,
-            5,
-            7,
-            9,
-            11,
-            13,
-            1
-        ]
-    },
-
-    {
-        value: 2,
-
-        // VEGETA está na posição 2
-        characters: [
-            2,
-            15,
-            6,
-            7,
-            10,
-            11,
-            14,
-            3
-        ]
-    },
-
-    {
-        value: 4,
-
-        // VEGETA está na posição 8
-        characters: [
-            4,
-            5,
-            6,
-            7,
-            12,
-            13,
-            14,
-            15
-        ]
-    },
-
-    {
-        value: 8,
-
-        // VEGETA está na posição 4
-        characters: [
-            8,
-            9,
-            10,
-            15,
-            11,
-            12,
-            13,
-            14
-        ]
+        screen.classList.add("active");
+        window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-];
+    // COMEÇAR OU RECOMEÇAR
+    function startGame() {
+        currentCard = 0;
+        guessedNumber = 0;
 
-
-// ==========================================
-// VARIÁVEIS DO JOGO
-// ==========================================
-
-let currentCard = 0;
-
-let guessedNumber = 0;
-
-
-// ==========================================
-// PEGANDO OS ELEMENTOS DO HTML
-// ==========================================
-
-const startScreen = document.getElementById("start-screen");
-
-const gameScreen = document.getElementById("game-screen");
-
-const resultScreen = document.getElementById("result-screen");
-
-const startButton = document.getElementById("start-button");
-
-const cardDisplay = document.getElementById("card-display");
-
-const questionText = document.getElementById("question-text");
-
-const resultNumber = document.getElementById("result-number");
-
-const resultImage = document.getElementById("result-image");
-
-const explanationText = document.getElementById("explanation-text");
-
-const playAgainButton = document.getElementById("play-again-button");
-
-
-// ==========================================
-// TROCAR DE TELA
-// ==========================================
-
-function showScreen(screen) {
-
-    startScreen.classList.remove("active");
-
-    gameScreen.classList.remove("active");
-
-    resultScreen.classList.remove("active");
-
-    screen.classList.add("active");
-}
-
-
-// ==========================================
-// COMEÇAR O JOGO
-// ==========================================
-
-function startGame() {
-
-    currentCard = 0;
-
-    guessedNumber = 0;
-
-    showScreen(gameScreen);
-
-    showCard();
-}
-
-
-// ==========================================
-// MOSTRAR UMA CARTA
-// ==========================================
-
-function showCard() {
-
-    // Se terminou as 4 cartas
-    if (currentCard >= cards.length) {
-
-        showResult();
-
-        return;
+        showScreen(gameScreen);
+        showCard();
     }
 
-
-    const card = cards[currentCard];
-
-
-    questionText.textContent =
-        `O personagem que você escolheu está nesta carta?`;
-
-
-    cardDisplay.innerHTML = "";
-
-
-    // Título da carta
-
-    const title = document.createElement("h2");
-
-    title.textContent =
-        `Carta ${currentCard + 1} de ${cards.length}`;
-
-    cardDisplay.appendChild(title);
-
-
-    // Grid dos personagens
-
-    const grid = document.createElement("div");
-
-    grid.className = "characters-grid";
-
-
-    // Coloca os personagens da carta
-
-    card.characters.forEach(function(id) {
-
-        const character = characters.find(function(personagem) {
-
-            return personagem.id === id;
-
-        });
-
-
-        if (!character) {
+    // MOSTRAR A CARTA ATUAL
+    function showCard() {
+        if (currentCard >= cards.length) {
+            showResult();
             return;
         }
 
+        const card = cards[currentCard];
 
-        const characterBox = document.createElement("div");
+        questionText.textContent =
+            "O personagem que você escolheu está nesta carta? 👀";
 
-        characterBox.className = "character";
+        cardDisplay.innerHTML = "";
 
+        const title = document.createElement("h2");
+        title.textContent = `Carta ${currentCard + 1} de ${cards.length}`;
+        cardDisplay.appendChild(title);
 
-        characterBox.innerHTML = `
-            <img src="${character.image}" alt="${character.name}">
-            <p>${character.name}</p>
-        `;
+        const grid = document.createElement("div");
+        grid.className = "characters-grid";
 
+        card.characters.forEach(function (id) {
+            const character = characters.find(function (item) {
+                return item.id === id;
+            });
 
-        grid.appendChild(characterBox);
+            if (!character) return;
 
-    });
+            const box = document.createElement("div");
+            box.className = "character";
 
+            const img = document.createElement("img");
+            img.src = character.image;
+            img.alt = character.name;
+            img.onerror = function () {
+                this.alt = "Imagem indisponível";
+            };
 
-    cardDisplay.appendChild(grid);
-}
+            const name = document.createElement("p");
+            name.textContent = character.name;
 
+            box.appendChild(img);
+            box.appendChild(name);
+            grid.appendChild(box);
+        });
 
-// ==========================================
-// RESPONDER SIM OU NÃO
-// ==========================================
-
-function handleAnswer(answer) {
-
-    // Se respondeu SIM
-    if (answer === "yes") {
-
-        // Soma o valor da carta
-        guessedNumber += cards[currentCard].value;
+        cardDisplay.appendChild(grid);
     }
 
+    // REGISTRAR RESPOSTA
+    function handleAnswer(answer) {
+        if (answer === "yes") {
+            guessedNumber += cards[currentCard].value;
+        }
 
-    // Vai para a próxima carta
-    currentCard++;
-
-
-    showCard();
-}
-
-
-// ==========================================
-// MOSTRAR RESULTADO
-// ==========================================
-
-function showResult() {
-
-    showScreen(resultScreen);
-
-
-    // Procura o personagem pelo número descoberto
-
-    const character = characters.find(function(personagem) {
-
-        return personagem.id === guessedNumber;
-
-    });
-
-
-    // Caso aconteça algum erro
-if (!character) {
-    resultNumberDisplay.textContent = "OPA! 🤨";
-
-    resultImageDisplay.innerHTML = `
-        <div style="font-size: 90px; margin: 20px;">
-            🕵️‍♂️
-        </div>
-    `;
-
-    explanationText.textContent =
-        "KKKKKK tentou me burlar, né, meu parceiro? 😂 Até eu fiquei perdido nessa! Escolhe um personagem de verdade e bora tentar de novo.";
-
-    showScreen('result');
-    return;
-}
-}
-}
+        currentCard++;
+        showCard();
     }
 
+    // MOSTRAR RESULTADO
+    function showResult() {
+        showScreen(resultScreen);
 
-    // Número descoberto
+        const character = characters.find(function (item) {
+            return item.id === guessedNumber;
+        });
 
-    resultNumber.textContent =
-        `Seu personagem é o número ${guessedNumber}`;
+        if (!character) {
+            resultNumber.textContent = "OPA! 🤨";
 
+            resultImage.innerHTML = `
+                <div style="font-size: 85px; margin: 20px;">
+                    🕵️‍♂️
+                </div>
+            `;
 
-    // Imagem
+            explanationText.textContent =
+                "KKKKKK tentou me passar a perna, né, meu consagrado? 😂 " +
+                "Você respondeu tudo no modo aleatório e quer que eu leia sua mente? " +
+                "Aí você me quebra! Escolhe um personagem e tenta de novo, Sherlock de Taubaté! 🕵️";
 
-    resultImage.innerHTML = `
-        <img 
-            src="${character.image}" 
-            alt="${character.name}"
-            style="
-                width: 100%;
-                max-width: 280px;
-                border-radius: 20px;
-            "
-        >
-    `;
+            return;
+        }
 
+        resultNumber.textContent =
+            `Seu personagem é o número ${character.id}!`;
 
-    // Explicação
+        resultImage.innerHTML = "";
 
-    explanationText.textContent =
-        `Eu descobri! O personagem escolhido foi ${character.name}. 
-        O número dele é ${guessedNumber}, descoberto através da soma 
-        das cartas em que ele apareceu.`;
-}
+        const img = document.createElement("img");
+        img.src = character.image;
+        img.alt = character.name;
+        img.style.width = "100%";
+        img.style.maxWidth = "280px";
+        img.style.borderRadius = "20px";
 
+        resultImage.appendChild(img);
 
-// ==========================================
-// BOTÃO COMEÇAR
-// ==========================================
+        explanationText.textContent =
+            `KKKKK te peguei! 😂 Seu personagem é ${character.name}! ` +
+            `O número dele é ${guessedNumber}. Não é magia, meu parceiro: ` +
+            "é matemática disfarçada de fofoca! 🧠";
+    }
 
-if (startButton) {
-    startButton.addEventListener('click', function() {
-        showScreen('game');
-        startGame();
-    });
-}
+    // BOTÃO COMEÇAR
+    if (startButton) {
+        startButton.addEventListener("click", startGame);
+    }
 
-
-// ==========================================
-// BOTÕES SIM E NÃO
-// ==========================================
-
-const answerButtons = document.querySelectorAll(
-    "[data-answer]"
-);
-
-
-answerButtons.forEach(function(button) {
-
-    button.addEventListener("click", function() {
-
-        const answer = button.getAttribute("data-answer");
-
-        handleAnswer(answer);
-
+    // BOTÕES SIM E NÃO
+    answerButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+            handleAnswer(button.dataset.answer);
+        });
     });
 
-});
-
-
-// ==========================================
-// JOGAR NOVAMENTE
-// ==========================================
-
-playAgainButton.addEventListener("click", function() {
-
-    startGame();
-
+    // BOTÃO JOGAR NOVAMENTE
+    if (playAgainButton) {
+        playAgainButton.addEventListener("click", function () {
+            showScreen(startScreen);
+        });
+    }
 });
