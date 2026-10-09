@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
         { id: 4, name: "Gojo", image: "img/gojo.jpg.jpeg" },
         { id: 5, name: "Tanjiro", image: "img/tanjiro.jpg.jpeg" },
         { id: 6, name: "Zoro", image: "img/zoro.jpg.jpeg" },
-        { id: 7, name: "Ichigo", image: "img/ichiro.jpg.jpeg" },
+        { id: 7, name: "Ichigo", image: "img/ichigo.jpg.jpeg" },
         { id: 8, name: "Eren", image: "img/eren.jpg" },
         { id: 9, name: "Killua", image: "img/killua.jpg.jpeg" },
         { id: 10, name: "Deku", image: "img/deku.jpg.jpeg" },
