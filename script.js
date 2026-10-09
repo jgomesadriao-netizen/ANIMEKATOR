@@ -3,19 +3,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const characters = [
         { id: 1, name: "Naruto", image: "img/naruto.jpg.jpeg" },
         { id: 2, name: "Luffy", image: "img/luffy.jpg.jpeg" },
-        { id: 3, name: "Goku", image: "img/goku.jpg" },
-        { id: 4, name: "Gojo", image: "img/gojo.jpg" },
-        { id: 5, name: "Tanjiro", image: "img/tanjiro.jpg" },
-        { id: 6, name: "Zoro", image: "img/zoro.jpg" },
-        { id: 7, name: "Ichigo", image: "img/ichiro.jpg" },
-        { id: 8, name: "Eren", image: "img/eren.jpg" },
-        { id: 9, name: "Killua", image: "img/killua.jpg" },
-        { id: 10, name: "Deku", image: "img/deku.jpg" },
-        { id: 11, name: "Saitama", image: "img/saitama.jpg" },
-        { id: 12, name: "Nezuko", image: "img/nezuko.jpg" },
-        { id: 13, name: "Sukuna", image: "img/sukuna.jpg" },
-        { id: 14, name: "Gon", image: "img/gon.jpg" },
-        { id: 15, name: "Vegeta", image: "img/vegeta.jpg" }
+        { id: 3, name: "Goku", image: "img/goku.jpg.jpeg" },
+        { id: 4, name: "Gojo", image: "img/gojo.jpg.jpeg" },
+        { id: 5, name: "Tanjiro", image: "img/tanjiro.jpg.jpeg" },
+        { id: 6, name: "Zoro", image: "img/zoro.jpg.jpeg" },
+        { id: 7, name: "Ichigo", image: "img/ichiro.jpg.jpeg" },
+        { id: 8, name: "Eren", image: "img/eren.jpg.jpeg" },
+        { id: 9, name: "Killua", image: "img/killua.jpg.jpeg" },
+        { id: 10, name: "Deku", image: "img/deku.jpg.jpeg" },
+        { id: 11, name: "Saitama", image: "img/saitama.jpg.jpeg" },
+        { id: 12, name: "Nezuko", image: "img/nezuko.jpg.jpeg" },
+        { id: 13, name: "Sukuna", image: "img/sukuna.jpg.jpeg" },
+        { id: 14, name: "Gon", image: "img/gon.jpg.jpeg" },
+        { id: 15, name: "Vegeta", image: "img/vegeta.jpg.jpeg" }
     ];
 
     // QUATRO CARTAS DO ANIMEKATOR
